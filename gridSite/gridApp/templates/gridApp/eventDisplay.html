@@ -1,0 +1,18 @@
+{% include "gridApp/menuDisplay.html" %}
+
+<title>OTGSF: Upcoming Events</title>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gridApp/style.css' %}" />
+
+{% if upcomingEvents %}
+	<ol>
+		{% for upcomingEvent in upcomingEvents %}
+			<li><a href="{% url 'gridApp:eventVendors' upcomingEvent.id %}">
+			{{ upcomingEvent.event_name }}</a></li>
+		{% endfor %}
+	</ol>
+{% else %}
+	<p>There are no upcoming events.</p>
+{% endif %}

@@ -1,0 +1,11 @@
+{% include "gridApp/menuDisplay.html" %}
+
+<title>OTGSF: Welcome!</title>
+
+<h1>Welcome to the Off the Grid SF Search Homepage!</h1>
+<p>Looking for some information on San Francisco's fantastic food trucks and vendors? Then this is the <strong><font size="5">perfect</font></strong> place
+to come and search!<br>Here you will find information on over <strong><font size="5">200</font></strong> vendors, so
+feel free to explore via one of the links below!</p>
+
+<a href="{% url 'gridApp:eventsAll' %}">Upcoming Events</a><br>
+<a href="{% url 'gridApp:vendorsAll' %}">Available Trucks and Vendors</a>

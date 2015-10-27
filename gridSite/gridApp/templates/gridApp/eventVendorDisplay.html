@@ -1,0 +1,24 @@
+{% include "gridApp/menuDisplay.html" %}
+
+<title>OTGSF Event: {{ eventName }}</title>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gridApp/style.css' %}" />
+
+<h3>Event Information: {{ eventName }}</h3>
+<p><strong style="font-size:17px">Location: </strong>{{ eventLocation }}</p>
+<p><strong style="font-size:17px">Start Time (in PST): </strong>{{ eventTime }}</p>
+
+<h4>Participating Vendors</h4>
+{% if eventVendors %}
+	<p>To learn more about one of the participating vendors, click the name.</p>
+	<ol>
+		{% for eventVendor in eventVendors %}
+			<li><a href="{% url 'gridApp:vendorEvents' eventVendor.grid_vendor.id %}">
+			{{ eventVendor.grid_vendor.vendor_name }}</a></li>
+		{% endfor %}
+	</ol>
+{% else %}
+	<p>There are no vendors for this event.</p>
+{% endif %}

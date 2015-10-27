@@ -1,0 +1,6 @@
+*.pyc
+*.sqlite3
+
+# IntelliJ files
+.idea
+gridProject.iml

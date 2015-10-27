@@ -1,0 +1,21 @@
+{% include "gridApp/menuDisplay.html" %}
+
+<title>OTGSF: Vendors</title>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gridApp/style.css' %}" />
+
+<h3>List of Current Vendors</h3>
+{% if eventVendors %}
+	<p>Below is the list of current vendors. The number of events next to each name is the number of events they<br>
+	have catered in the past 30 days. If you want to learn more about a vendor or food truck, click the name.</p>
+	<ol>
+		{% for eventVendor in eventVendors %}
+			<li><a href="{% url 'gridApp:vendorEvents' eventVendor.id %}">
+			{{ eventVendor.vendor_name }} - {{ eventVendor.event_count }} event{{ eventVendor.event_count|pluralize }}</a></li>
+		{% endfor %}
+	</ol>
+{% else %}
+	<p>There are no vendors available at the moment.</p>
+{% endif %}
