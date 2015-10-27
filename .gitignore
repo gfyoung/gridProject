@@ -1,6 +1,9 @@
 *.pyc
 *.sqlite3
 
+# Checkstyle files
+pythonStyleErrors.txt
+
 # IntelliJ files
 .idea
 gridProject.iml
