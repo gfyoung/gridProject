@@ -15,30 +15,30 @@ APP = "gridApp"
 
 def resetDB():
     with connect(DATABASE) as conn:
-        print("Deleting {} tables...".format(APP))
+        print("Deleting {0} tables...".format(APP))
         tablesToDelete = conn.execute(
                 "SELECT name FROM sqlite_master " +
-                "WHERE name LIKE '{}'".format(APP)).fetchall()
+                "WHERE name LIKE '{0}'".format(APP)).fetchall()
 
         for table in tablesToDelete:
             tableName = table[0]  # table = (tableName,)
-            conn.execute("DROP TABLE {}".format(tableName))
+            conn.execute("DROP TABLE {0}".format(tableName))
 
-        print("{} table deletion complete!".format(APP))
+        print("{0} table deletion complete!".format(APP))
 
 
 def rerunMigrations():
-    print("Rerunning {} migrations...\n".format(APP))
+    print("Rerunning {0} migrations...\n".format(APP))
     local("python manage.py migrate")
-    print("\n{} migrations execution complete!\n".format(APP))
+    print("\n{0} migrations execution complete!\n".format(APP))
 
 if __name__ == "__main__":
-    parser = ArgumentParser(description="Reset {} database".format(APP))
+    parser = ArgumentParser(description="Reset {0} database".format(APP))
     parser.add_argument("-r", "--rerun",
                         dest="rerun",
                         default=False,
                         action="store_true",
-                        help="rerun {} migrations".format(APP))
+                        help="rerun {0} migrations".format(APP))
 
     resetDB()
     args = parser.parse_args()

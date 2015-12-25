@@ -8,7 +8,7 @@ from json import loads
 import re
 
 events_link = "https://graph.facebook.com/v2.0/129511477069092/events?" \
-              "access_token={}&fields=name,location,description"
+              "access_token={0}&fields=name,location,description"
 oauth_access_token = '1576169779295502|gO5N6nnuHe3m-RQBNKsOKO6xzt8'
 vendor_link = "http://offthegridsf.com/vendors#food"
 

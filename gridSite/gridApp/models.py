@@ -25,5 +25,6 @@ class gridEventVendor(models.Model):
     grid_vendor = models.ForeignKey(gridVendor)
 
     def __unicode__(self):
-        return "{} for {}".format(self.grid_vendor.vendor_name,
-                                  self.grid_event.event_name)
+        return "{vendorName} for {eventName}".format(
+                vendorName=self.grid_vendor.vendor_name,
+                eventName=self.grid_event.event_name)
