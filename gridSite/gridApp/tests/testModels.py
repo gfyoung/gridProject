@@ -50,6 +50,5 @@ class GridEventVendorTestCase(TestCase):
         )
 
     def testUnicode(self):
-        # There is only one object in the database
-        testEventVendor = gridEventVendor.objects.all()[0]
+        testEventVendor = gridEventVendor.objects.get(pk=1)
         self.assertEqual(unicode(testEventVendor), "testVendor for testEvent")
