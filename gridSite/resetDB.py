@@ -15,20 +15,14 @@ def resetDB():
     with connect(DATABASE) as conn:
         print "Deleting {} tables...".format(APP)
         tablesToDelete = conn.execute(
-            "SELECT name FROM sqlite_master " +
-            "WHERE instr(name, '{}') > 0".format(APP)).fetchall()
+                "SELECT name FROM sqlite_master " +
+                "WHERE name LIKE '{}'".format(APP)).fetchall()
 
         for table in tablesToDelete:
             tableName = table[0]  # table = (tableName,)
             conn.execute("DROP TABLE {}".format(tableName))
 
         print "{} table deletion complete!".format(APP)
-        print "\nDeleting {} migrations in history...".format(APP)
-        conn.execute(
-            "DELETE FROM django_migrations WHERE app='{}'".format(APP)
-        )
-
-        print "{} migrations deletion complete!\n".format(APP)
 
 
 def rerunMigrations():
