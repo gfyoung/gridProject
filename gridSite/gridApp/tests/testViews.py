@@ -29,14 +29,16 @@ class BasicUrlAccessTestCase(TestCase):
         data = "Welcome to the Off the Grid SF Search Homepage!"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
     def testGetBackSlashGridAppAbout(self):
         response = self.client.get("/gridApp/about")
         data = "The purpose of this web application is to facilitate"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
     @unittest.skip("need Facebook auth")
     def testGetBackSlashEventId(self):
@@ -44,7 +46,8 @@ class BasicUrlAccessTestCase(TestCase):
         data = "Participating Vendors"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
     @unittest.skip("need Facebook auth")
     def testGetBackSlashEventAll(self):
@@ -52,7 +55,8 @@ class BasicUrlAccessTestCase(TestCase):
         data = "Upcoming Events"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
     @unittest.skip("need Facebook auth")
     def testGetBackSlashVendorId(self):
@@ -60,7 +64,8 @@ class BasicUrlAccessTestCase(TestCase):
         data = "Vendor Information"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
     @unittest.skip("need Facebook auth")
     def testGetBackSlashVendorAll(self):
@@ -68,7 +73,8 @@ class BasicUrlAccessTestCase(TestCase):
         data = "List of Current Vendors"
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(data in str(response), msg=self.missingDataMsg)
+        self.assertTrue(data in response.content.decode('utf-8'),
+                        msg=self.missingDataMsg)
 
 
 class VendorUtilTestCase(unittest.TestCase):

@@ -1,9 +1,14 @@
 from difflib import get_close_matches
 from bs4 import BeautifulSoup
-from urllib2 import urlopen
 from dateutil import parser
 from pytz import timezone
 from json import loads
+
+# Python 3 compatibility
+try:
+    from urllib2 import urlopen
+except ImportError:
+    from urllib.request import urlopen
 
 import os
 import re

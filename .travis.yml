@@ -1,0 +1,48 @@
+language: python
+
+sudo: false
+
+cache:
+   directories:
+      - $HOME/.cache/pip
+
+env:
+   - DJANGO_VERSION=1.8
+   - DJANGO_VERSION=1.9
+
+# Django 1.8 requires Python version >= 2.7
+#
+# Django 1.9 requires Python version >= 3.4
+# if using Python 3
+python:
+   - 2.7
+   - 3.4
+   - 3.5
+
+matrix:
+  include:
+    - python: 3.2
+      env: DJANGO_VERSION=1.8
+    - python: 3.3
+      env: DJANGO_VERSION=1.8
+
+before_install:
+   - uname -a
+   - free -m
+   - df -h
+   - ulimit -a
+   - mkdir builds
+   - pushd builds
+   # Build into own virtualenv in order
+   # to control the build environment
+   - virtualenv --python=python venv
+   - source venv/bin/activate
+   - python -V
+   - pip install --upgrade pip setuptools
+   - pip install Django==$DJANGO_VERSION
+   - pip install beautifulsoup4
+   - pip install python-dateutil
+   - pip install pytz
+   - popd
+
+script: cd gridSite && python manage.py test

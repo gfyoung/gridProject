@@ -4,6 +4,12 @@ from django.conf import settings
 from django.test import TestCase
 from gridApp.models import gridEvent, gridVendor, gridEventVendor
 
+# Python 3 compatibility
+try:
+    unicode
+except NameError:
+    unicode = str
+
 
 class GridEventTestCase(TestCase):
     def setUp(self):

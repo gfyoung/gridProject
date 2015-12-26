@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gfyoung/gridProject.svg?branch=master)](https://travis-ci.org/gfyoung/gridProject)
+
 # gridProject
 Website that collects and displays data from Off the Grid SF
 
