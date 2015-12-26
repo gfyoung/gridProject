@@ -7,3 +7,7 @@ pythonStyleErrors.txt
 # IntelliJ files
 .idea
 gridProject.iml
+
+# Testing files
+mockPastEvents.json
+mockUpcomingEvents.json

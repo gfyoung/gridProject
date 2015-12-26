@@ -1,3 +1,6 @@
+from pytz import timezone
+from datetime import datetime
+from django.conf import settings
 from django.test import TestCase
 from gridApp.models import gridEvent, gridVendor, gridEventVendor
 
@@ -7,7 +10,11 @@ class GridEventTestCase(TestCase):
         gridEvent.objects.all().delete()
         gridEvent.objects.create(event_name="testEvent",
                                  event_location="testLoc",
-                                 start_date="2015-12-13")
+                                 start_date=str(
+                                     datetime.now(tz=timezone(
+                                             settings.TIME_ZONE)
+                                     )
+                                 ))
 
     def testUnicode(self):
         testEvent = gridEvent.objects.get(event_name="testEvent")
@@ -36,7 +43,11 @@ class GridEventVendorTestCase(TestCase):
         testGridEvent = gridEvent.objects.create(
             event_name="testEvent",
             event_location="testLoc",
-            start_date="2015-12-13"
+            start_date=str(
+                    datetime.now(tz=timezone(
+                            settings.TIME_ZONE)
+                    )
+            )
         )
         testGridVendor = gridVendor.objects.create(
             vendor_name="testVendor",
