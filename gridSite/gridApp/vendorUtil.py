@@ -16,7 +16,7 @@ vendor_link = "http://offthegridsf.com/vendors#food"
 def getVendorInfo():
     conn = urlopen(vendor_link, None)
     html = conn.read()
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, 'html.parser')
 
     foodVendors = soup.find_all(**{'id': 'food-tab'})
     vendorNames = foodVendors[0].find_all(**{'class': 'otg-vendor-logo'})
