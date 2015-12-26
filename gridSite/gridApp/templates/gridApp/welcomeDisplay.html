@@ -1,11 +1,20 @@
 {% include "gridApp/menuDisplay.html" %}
 
+<style>
+    p {
+        font-size: 20px;
+    }
+</style>
+
 <title>OTGSF: Welcome!</title>
 
-<h1>Welcome to the Off the Grid SF Search Homepage!</h1>
-<p>Looking for some information on San Francisco's fantastic food trucks and vendors? Then this is the <strong><font size="5">perfect</font></strong> place
-to come and search!<br>Here you will find information on over <strong><font size="5">200</font></strong> vendors, so
-feel free to explore via one of the links below!</p>
+<h1 style="text-align:center">Welcome to the Off the Grid SF Search Homepage!</h1>
+<p style="line-height:200%">Looking for information on San Francisco's fantastic food trucks and vendors?
+    Then this is the<br> the <strong>perfect</strong> place to come and search! Here, you will find information
+    on over <strong>200</strong> vendors, so feel<br>free to explore via one of the links below (or above)!</p><br>
 
-<a href="{% url 'gridApp:eventsAll' %}">Upcoming Events</a><br>
-<a href="{% url 'gridApp:vendorsAll' %}">Available Trucks and Vendors</a>
+<p><b>Interest about upcoming events?</b>
+    Click <a class="menuOption" href="{% url 'gridApp:eventsAll' %}">here!</a></p>
+
+<p><b>Want to know about the great food trucks and vendors around?</b>
+    Click <a class="menuOption" href="{% url 'gridApp:vendorsAll' %}">here!</a></p>

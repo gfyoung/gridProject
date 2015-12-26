@@ -1,3 +1,7 @@
+a.menuOption:hover {
+    font-size: 25px;
+}
+
 li a {
 	text-decoration: none;
 	color: black;
