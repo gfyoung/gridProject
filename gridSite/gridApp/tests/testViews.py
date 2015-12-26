@@ -10,6 +10,10 @@ class BasicUrlAccessTestCase(TestCase):
 
     def testGetBackSlashGridApp(self):
         response = self.client.get("/gridApp/")
+        self.assertEqual(response.status_code, 302)
+
+    def testGetBackSlashGridAppHome(self):
+        response = self.client.get("/gridApp/home")
         self.assertEqual(response.status_code, 200)
 
     def testGetBackSlashGridAppAbout(self):
