@@ -9,6 +9,10 @@ class gridEvent(models.Model):
     def __unicode__(self):
         return self.event_name
 
+    class Meta:
+        verbose_name = "Grid Event"
+        verbose_name_plural = "Grid Events"
+
 
 class gridVendor(models.Model):
     vendor_name = models.CharField(max_length=1000)
@@ -19,6 +23,10 @@ class gridVendor(models.Model):
     def __unicode__(self):
         return self.vendor_name
 
+    class Meta:
+        verbose_name = "Grid Vendor"
+        verbose_name_plural = "Grid Vendors"
+
 
 class gridEventVendor(models.Model):
     grid_event = models.ForeignKey(gridEvent)
@@ -28,3 +36,7 @@ class gridEventVendor(models.Model):
         return "{vendorName} for {eventName}".format(
                 vendorName=self.grid_vendor.vendor_name,
                 eventName=self.grid_event.event_name)
+
+    class Meta:
+        verbose_name = "Grid Event Vendors"
+        verbose_name_plural = "Grid Event Vendors"
