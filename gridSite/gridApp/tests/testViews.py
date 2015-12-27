@@ -4,6 +4,7 @@ from gridApp.models import gridEvent, \
     gridVendor, gridEventVendor
 from gridApp.views import needToUpdate
 from datetime import datetime, timedelta
+from .mockFacebook import MockFacebook
 from django.test import TestCase
 from django.conf import settings
 from pytz import timezone
@@ -335,4 +336,57 @@ class VendorUtilTestCase(unittest.TestCase):
 
         self.assertFalse(needToUpdate(now))
 
-# TODO: Mock the updateData function in views.py
+    def testUpdateData(self):
+        mockFacebook = MockFacebook()
+        mockFacebook.updateData()
+
+        self.assertEqual(
+            gridVendor.objects.count(),
+            len(mockFacebook.vendors),
+            msg="Vendor Count Mismatch: {0} != {1}".format(
+                gridVendor.objects.count(),
+                len(mockFacebook.vendors)
+            )
+        )
+
+        self.assertEqual(
+            gridEvent.objects.count(),
+            len(mockFacebook.upcomingEvents),
+            msg="Event Count Mismatch: {0} != {1}".format(
+                gridEvent.objects.count(),
+                len(mockFacebook.upcomingEvents)
+            )
+        )
+
+        self.assertEqual(
+                gridEventVendor.objects.count(),
+                mockFacebook.upcomingEventsVendorCount,
+                msg="Event Vendor Count Mismatch: {0} != {1}".format(
+                        gridEventVendor.objects.count(),
+                        mockFacebook.upcomingEventsVendorCount
+                )
+        )
+
+        for vendorName, pastEventCount in mockFacebook.pastEventCounts.items():
+            vendorInfo = gridVendor.objects.filter(vendor_name=vendorName)
+
+            self.assertEqual(len(vendorInfo), 1,
+                             msg=("Only vendor should "
+                                  "have been found"))
+
+            vendorInfo = vendorInfo[0]
+
+            self.assertEqual(
+                vendorInfo.event_count, pastEventCount,
+                msg="Vendor Event Count Mismatch: {0} != {1}".format(
+                    vendorInfo.event_count, pastEventCount))
+
+        for vendorName, upcomingEventCount in mockFacebook.upcomingEventCounts.items():
+            eventVendorInfo = gridEventVendor.objects.filter(
+                grid_vendor__vendor_name=vendorName)
+
+            self.assertEqual(len(eventVendorInfo), upcomingEventCount,
+                             msg=("Event Vendor Count Mismatch for {0}: "
+                                  "{1} != {2}".format(
+                                     vendorName, len(eventVendorInfo),
+                                     upcomingEventCount)))
