@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/gfyoung/gridProject.svg?branch=master)](https://travis-ci.org/gfyoung/gridProject)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/5wtq4nibsv05o25h/branch/master?svg=true)](https://ci.appveyor.com/project/gfyoung/gridproject/branch/master)
+
 # gridProject
 Website that collects and displays data from Off the Grid SF
 
