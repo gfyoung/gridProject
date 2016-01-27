@@ -13,8 +13,6 @@ environment:
         DJANGO_VERSION: 1.8
       - PYTHON_HOME: C:\Python27
         DJANGO_VERSION: 1.9
-      - PYTHON_HOME: C:\Python32
-        DJANGO_VERSION: 1.8
       - PYTHON_HOME: C:\Python33
         DJANGO_VERSION: 1.8
       - PYTHON_HOME: C:\Python34
