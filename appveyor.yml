@@ -37,16 +37,13 @@ install:
 build_script:
    - uname -a
    - df -h
-   # Preparatory installations into
-   # the global environment
-   - '%PYTHON_HOME%\Scripts\pip install --upgrade pip'
-   - '%PYTHON_HOME%\Scripts\pip install virtualenv'
    # Build into own virtualenv in order
    # to control the build environment
+   - '%PYTHON_HOME%\Scripts\pip install virtualenv'
    - '%PYTHON_HOME%\Scripts\virtualenv venv'
    - venv\Scripts\activate
    - python -V
-   - pip install --upgrade pip setuptools
+   - 'python -m pip install pip setuptools --ignore-installed'
    - 'pip install Django==%DJANGO_VERSION%'
    - pip install beautifulsoup4
    - pip install python-dateutil
